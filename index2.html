@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作品專案 ｜ 磐璽設計 Stable Trust</title>
+  
+  <!-- Google Fonts: 襯線與黑體結合 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-gold: #c29d59;
+      --gold-hover: #a8823e;
+      --bg-light: #fcfbfa;
+      --bg-card: #ffffff;
+      --text-main: #242424;
+      --text-sub: #666666;
+      --border-color: #eae6df;
+      --dark-slate: #1a1a1a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .serif {
+      font-family: 'Noto Serif TC', serif;
+    }
+
+    /* 頂部導覽列 */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(252, 251, 250, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+    }
+
+    .brand-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      color: var(--primary-gold);
+      letter-spacing: 0.1em;
+    }
+
+    .nav-btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 18px;
+      font-size: 0.88rem;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-gold {
+      background: var(--primary-gold);
+      color: #fff;
+      border: 1px solid var(--primary-gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+    }
+
+    .btn-outline {
+      border: 1px solid #ccc;
+      color: var(--text-main);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      border-color: var(--primary-gold);
+      color: var(--primary-gold);
+    }
+
+    /* 頁頭介紹區 */
+    .page-header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .page-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--primary-gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 8px;
+    }
+
+    .page-header h1 {
+      font-size: 2.2rem;
+      color: var(--dark-slate);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      color: var(--text-sub);
+      font-size: 1rem;
+    }
+
+    /* 分類標籤按鈕 */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 25px 0 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid #dcd7ce;
+      padding: 8px 20px;
+      font-size: 0.92rem;
+      cursor: pointer;
+      color: var(--text-sub);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--dark-slate);
+      color: #fff;
+      border-color: var(--dark-slate);
+    }
+
+    /* 瀑布流容器 (CSS Multi-Column) */
+    .portfolio-container {
+      max-width: 1350px;
+      margin: 0 auto 80px;
+      padding: 0 4%;
+    }
+
+    .masonry-wall {
+      column-count: 3;
+      column-gap: 24px;
+    }
+
+    /* 專案卡片 */
+    .project-card {
+      break-inside: avoid;
+      margin-bottom: 24px;
+      background: var(--bg-card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+      border-color: rgba(194, 157, 89, 0.4);
+    }
+
+    .card-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: #f0ede8;
+    }
+
+    .card-img-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .card-img-wrapper img {
+      transform: scale(1.04);
+    }
+
+    .photo-count-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.68);
+      color: #fff;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-info {
+      padding: 20px 22px;
+    }
+
+    .card-category {
+      font-size: 0.78rem;
+      color: var(--primary-gold);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      color: var(--dark-slate);
+      margin-bottom: 6px;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* 彈窗燈箱 (Modal) 結構 */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 18, 18, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 1050px;
+      max-height: 90vh;
+      border-radius: 10px;
+      overflow-y: auto;
+      position: relative;
+      padding: 35px 30px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #000; }
+
+    .modal-header {
+      margin-bottom: 25px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 15px;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .modal-gallery-masonry {
+      column-count: 2;
+      column-gap: 16px;
+    }
+
+    .modal-gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+    }
+
+    .modal-gallery-item img {
+      width: 100%;
+      border-radius: 6px;
+      display: block;
+      background: #f0ede8;
+    }
+
+    .modal-gallery-item p {
+      font-size: 0.82rem;
+      color: #777;
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* 頁尾 */
+    footer {
+      background: #141414;
+      color: #777;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+      border-top: 1px solid #282828;
+    }
+
+    footer span {
+      color: var(--primary-gold);
+    }
+
+    /* 響應式斷點 */
+    @media (max-width: 1100px) {
+      .masonry-wall { column-count: 2; }
+    }
+
+    @media (max-width: 680px) {
+      .masonry-wall { column-count: 1; }
+      .modal-gallery-masonry { column-count: 1; }
+      .nav-btn-group { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部導覽列 -->
+  <header>
+    <div class="brand">
+      <a href="index.html">
+        <div class="brand-title serif">磐 璽 設 計</div>
+        <div class="brand-sub">Stable Trust Construction</div>
+      </a>
+    </div>
+    <div class="nav-btn-group">
+      <a href="index.html" class="btn btn-outline">返回首頁</a>
+      <a href="https://line.me/R/ti/p/" target="_blank" rel="noopener" class="btn btn-outline">客服小編</a>
+      <a href="index3.html" class="btn btn-gold">預約免費諮詢</a>
+    </div>
+  </header>
+
+  <!-- 頁面標頭 -->
+  <section class="page-header">
+    <div class="page-tag">SELECTED WORKS</div>
+    <h1 class="serif">精選工程與空間專案</h1>
+    <p>立基如磐，以工藝淬鍊空間；一諾成璽，以誠信築造居所。</p>
+
+    <!-- 分類按鈕 -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" onclick="filterProjects('all')">全部作品</button>
+      <button class="filter-btn" onclick="filterProjects('樣品屋')">樣品屋</button>
+      <button class="filter-btn" onclick="filterProjects('新成屋')">新成屋</button>
+      <button class="filter-btn" onclick="filterProjects('中古屋')">中古屋</button>
+      <button class="filter-btn" onclick="filterProjects('老屋翻新')">老屋翻新</button>
+      <button class="filter-btn" onclick="filterProjects('預售客變')">預售客變</button>
+    </div>
+  </section>
+
+  <!-- 瀑布流展示區 -->
+  <main class="portfolio-container">
+    <div class="masonry-wall" id="projectsContainer"></div>
+  </main>
+
+  <!-- 專案圖集彈窗 (Modal) -->
+  <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModalDirect()">&times;</button>
+      <div class="modal-header">
+        <div id="modalCategory" style="color:var(--primary-gold); font-size:0.85rem; font-weight:500;"></div>
+        <h2 id="modalTitle" class="modal-title serif"></h2>
+        <p id="modalDesc" style="color:var(--text-sub); font-size:0.95rem;"></p>
+      </div>
+      <!-- 彈窗內部的多圖瀑布流 -->
+      <div class="modal-gallery-masonry" id="modalImagesContainer"></div>
+    </div>
+  </div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>立基如磐，一諾成璽 ｜ <span>磐璽設計</span> Stable Trust Construction co. ltd</p>
+    <p style="margin-top: 8px; font-size: 0.78rem;">© 2026 磐璽室內裝修工程. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    /*
+      【精準相對路徑說明】：
+      因為 index2.html 位於 C:\Stable Trust Construction\
+      而圖片資料夾位於 C:\Stable Trust Construction\PZ\...
+      因此相對路徑為 PZ/子資料夾/檔名.png
+    */
+
+    const projectsData = [
+      // 專案 1：7samp (8張圖)
+      {
+        id: 1,
+        category: '樣品屋',
+        title: '大城七月 ｜ 沉潛雅境',
+        meta: '台中七期 ｜ 68 坪 ｜ 全案工程監造與空間規劃',
+        desc: '以石材與溫潤木質交織，搭配嚴謹泥作與水電基底，打造兼具現代大器與居住溫度的安穩居所。',
+        cover: 'PZ/7samp/d71.png',
+        photoCount: 8,
+        gallery: [
+          { url: 'PZ/7samp/d71.png', caption: '客廳公領域全景' },
+          { url: 'PZ/7samp/d72.png', caption: '電視牆石材細節' },
+          { url: 'PZ/7samp/d73.png', caption: '開放式餐廳與中島' },
+          { url: 'PZ/7samp/d74.png', caption: '廊道端景規劃' },
+          { url: 'PZ/7samp/d75.png', caption: '主臥睡眠空間' },
+          { url: 'PZ/7samp/d76.png', caption: '獨立精品更衣室' },
+          { url: 'PZ/7samp/d77.png', caption: '衛浴乾濕分離設計' },
+          { url: 'PZ/7samp/d78.png', caption: '多功能書房休憩區' }
+        ]
+      },
+
+      // 專案 2：cld (14張圖)
+      {
+        id: 2,
+        category: '中古屋',
+        title: '親家雲硯 ｜ 王公館',
+        meta: '台中七期 ｜ 85 坪 ｜ 頂級工法與奢華建材整合',
+        desc: '全案貫徹磐石工藝，以高標準隱蔽工程奠定安心生活，客製化精品收納與大器石材展現空間氣度。',
+        cover: 'PZ/cld/cld1.png',
+        photoCount: 14,
+        gallery: [
+          { url: 'PZ/cld/cld1.png', caption: '玄關迎賓端景' },
+          { url: 'PZ/cld/cld2.png', caption: '客廳挑高視野' },
+          { url: 'PZ/cld/cld3.png', caption: '奢石電視主牆' },
+          { url: 'PZ/cld/cld4.png', caption: '休閒沙發區' },
+          { url: 'PZ/cld/cld5.png', caption: '精緻中島吧台' },
+          { url: 'PZ/cld/cld6.png', caption: '恆溫酒櫃與餐廚區' },
+          { url: 'PZ/cld/cld7.png', caption: '藝術廊道採光' },
+          { url: 'PZ/cld/cld8.png', caption: '茶室多功能空間' },
+          { url: 'PZ/cld/cld9.png', caption: '主臥大器格局' },
+          { url: 'PZ/cld/cld10.png', caption: '精品更衣間收納' },
+          { url: 'PZ/cld/cld11.png', caption: '化妝更衣梳洗區' },
+          { url: 'PZ/cld/cld12.png', caption: '主衛浴雙面盆' },
+          { url: 'PZ/cld/cld13.png', caption: '次臥溫馨規劃' },
+          { url: 'PZ/cld/cld14.png', caption: '客衛浴細緻工法' }
+        ]
+      },
+
+      // 專案 3：firsl (5張圖)
+      {
+        id: 3,
+        category: '中古屋',
+        title: '新竹一第 ｜ 林公館',
+        meta: '台中西區 ｜ 38 坪 ｜ 預售屋客變與格局優化',
+        desc: '在毛胚階段提前介入管線與隔間規劃，保留純粹採光面，構築少即是多的寧靜生活感。',
+        cover: 'PZ/firsl/LL1.png',
+        photoCount: 5,
+        gallery: [
+          { url: 'PZ/firsl/LL1.png', caption: '客廳陽光視角' },
+          { url: 'PZ/firsl/LL2.png', caption: '簡約電視牆線條' },
+          { url: 'PZ/firsl/LL3.png', caption: '餐廚一體動線' },
+          { url: 'PZ/firsl/LL4.png', caption: '主臥木質調床頭' },
+          { url: 'PZ/firsl/LL5.png', caption: '極簡衛浴空間' }
+        ]
+      },
+
+      // 專案 4：firsr (9張圖)
+      {
+        id: 4,
+        category: '新成屋',
+        title: '新竹一第 ｜ 品牌概念旗艦館',
+        meta: '台中南屯 ｜ 62 坪 ｜ 商業動線與情境照明工程',
+        desc: '以如璽信譽落實商業履約，工期精準把控，結合洗鍊線條與沉穩配色，提供沉浸式展示體驗。',
+        cover: 'PZ/firsr/cc1.png',
+        photoCount: 9,
+        gallery: [
+          { url: 'PZ/firsr/cc1.png', caption: '品牌門面入口' },
+          { url: 'PZ/firsr/cc2.png', caption: '接待諮詢櫃台' },
+          { url: 'PZ/firsr/cc3.png', caption: '主要展示長廊' },
+          { url: 'PZ/firsr/cc4.png', caption: '樣品材質體驗區' },
+          { url: 'PZ/firsr/cc5.png', caption: '貴賓獨立洽談室' },
+          { url: 'PZ/firsr/cc6.png', caption: '開放式討論工作台' },
+          { url: 'PZ/firsr/cc7.png', caption: '情境燈光切換示範' },
+          { url: 'PZ/firsr/cc8.png', caption: '主管辦公室視角' },
+          { url: 'PZ/firsr/cc9.png', caption: '精緻洗手間規劃' }
+        ]
+      },
+
+      // 專案 5：firss (4張圖)
+      {
+        id: 5,
+        category: '老屋翻新',
+        title: '新竹一第 ｜ 蕭公館',
+        meta: '台中北屯 ｜ 50 坪 ｜ 全室耐磨地坪與工藝鐵件',
+        desc: '以低彩度礦石質感為基調，搭配細膩燈光層次，為喜愛安靜氛圍的屋主打造放鬆身心的家。',
+        cover: 'PZ/firss/ss1.png',
+        photoCount: 4,
+        gallery: [
+          { url: 'PZ/firss/ss1.png', caption: '客廳端景與自然光' },
+          { url: 'PZ/firss/ss2.png', caption: '木質收納牆面細節' },
+          { url: 'PZ/firss/ss3.png', caption: '餐廳溫暖聚餐氛圍' },
+          { url: 'PZ/firss/ss4.png', caption: '主臥安穩睡眠區' }
+        ]
+      },
+
+      // 專案 6：gre (4張圖)
+      {
+        id: 6,
+        category: '新成屋客變',
+        title: '登陽森濤 ｜ 蕭公館',
+        meta: '台中西區 ｜ 42 坪 ｜ 基礎結構補強與老屋管線更新',
+        desc: '澈底重拉老舊水電、重塑漏水壁癌結構，以穩實工序為舊空間注入第二生命。',
+        cover: 'PZ/gre/sun1.png',
+        photoCount: 4,
+        gallery: [
+          { url: 'PZ/gre/sun1.png', caption: '翻新後開闊客廳' },
+          { url: 'PZ/gre/sun2.png', caption: '陽台綠意引入室內' },
+          { url: 'PZ/gre/sun3.png', caption: '全新機能廚房空間' },
+          { url: 'PZ/gre/sun4.png', caption: '通風明亮主衛浴' }
+        ]
+      },
+
+      // 專案 7：sunn (8張圖)
+      {
+        id: 7,
+        category: '預售客變',
+        title: '太子殿廈 ｜ 楊公館',
+        meta: '台中南屯 ｜ 55 坪 ｜ 無障礙友善與全熱交換工程',
+        desc: '考量長輩與孩童的生活安全性，落實地坪零高低差與圓弧防撞包覆，體現溫暖安心的生活哲學。',
+        cover: 'PZ/sunn/tz1.png',
+        photoCount: 8,
+        gallery: [
+          { url: 'PZ/sunn/tz1.png', caption: '客廳無障礙動線' },
+          { url: 'PZ/sunn/tz2.png', caption: '圓弧收邊玄關櫃' },
+          { url: 'PZ/sunn/tz3.png', caption: '開放式全齡餐廚' },
+          { url: 'PZ/sunn/tz4.png', caption: '採光多功能和室' },
+          { url: 'PZ/sunn/tz5.png', caption: '長輩友善主臥' },
+          { url: 'PZ/sunn/tz6.png', caption: '小孩房趣味收納' },
+          { url: 'PZ/sunn/tz7.png', caption: '防滑扶手衛浴工程' },
+          { url: 'PZ/sunn/tz8.png', caption: '陽光休閒景觀陽台' }
+        ]
+      },
+
+      // 專案 8：tto (9張圖)
+      {
+        id: 8,
+        category: '中古屋',
+        title: '桃園透天 ｜ 陳公館',
+        meta: '台中西屯 ｜ 72 坪 ｜ 聲學降噪與智慧辦公整合',
+        desc: '整合會議聲學工程與隱私隔間，以幹練俐落的設計語彙呈現專業穩健的企業形象。',
+        cover: 'PZ/tto/toyu1.png',
+        photoCount: 9,
+        gallery: [
+          { url: 'PZ/tto/toyu1.png', caption: '商務會所大廳' },
+          { url: 'PZ/tto/toyu2.png', caption: '接待前台細節' },
+          { url: 'PZ/tto/toyu3.png', caption: '大會議室影音規劃' },
+          { url: 'PZ/tto/toyu4.png', caption: '中型討論小包廂' },
+          { url: 'PZ/tto/toyu5.png', caption: '高階主管辦公室' },
+          { url: 'PZ/tto/toyu6.png', caption: '員工開放辦公區' },
+          { url: 'PZ/tto/toyu7.png', caption: '茶水休憩交流吧' },
+          { url: 'PZ/tto/toyu8.png', caption: '精品展示陳列架' },
+          { url: 'PZ/tto/toyu9.png', caption: 'VIP 貴賓接待室' }
+        ]
+      }
+    ];
+
+    // 渲染卡片至瀑布流容器
+    const container = document.getElementById('projectsContainer');
+
+    function renderProjects(data) {
+      if (!container) return;
+      container.innerHTML = data.map(item => `
+        <div class="project-card" onclick="openModal(${item.id})">
+          <div class="card-img-wrapper">
+            <img src="${item.cover}" 
+                 alt="${item.title}" 
+                 loading="lazy" 
+                 onerror="this.onerror=null; this.src='https://placehold.co/600x450?text=圖片路徑未找到';">
+            <div class="photo-count-badge">📷 ${item.photoCount} 張全景</div>
+          </div>
+          <div class="card-info">
+            <div class="card-category">${item.category}</div>
+            <h3 class="card-title serif">${item.title}</h3>
+            <div class="card-meta">${item.meta}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 初次載入渲染
+    renderProjects(projectsData);
+
+    // 分類篩選
+    function filterProjects(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(cat) || (cat === 'all' && btn.textContent.includes('全部')));
+      });
+
+      if (cat === 'all') {
+        renderProjects(projectsData);
+      } else {
+        const filtered = projectsData.filter(p => p.category === cat);
+        renderProjects(filtered);
+      }
+    }
+
+    // 彈窗（Modal）邏輯
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalImagesContainer = document.getElementById('modalImagesContainer');
+
+    function openModal(projectId) {
+      const project = projectsData.find(p => p.id === projectId);
+      if (!project) return;
+
+      modalCategory.textContent = project.category;
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = `${project.meta} — ${project.desc}`;
+
+      modalImagesContainer.innerHTML = project.gallery.map(img => `
+        <div class="modal-gallery-item">
+          <img src="${img.url}" 
+               alt="${img.caption}" 
+               loading="lazy" 
+               onerror="this.onerror=null; this.src='https://placehold.co/800x600?text=圖片載入失敗';">
+          <p>${img.caption}</p>
+        </div>
+      `).join('');
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(e) {
+      if (e.target === modal) closeModalDirect();
+    }
+
+    function closeModalDirect() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModalDirect();
+      }
+    });
+  </script>
+</body>
+</html>

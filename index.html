@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>磐璽設計 Stable Trust ｜ 立基如磐，一諾成璽 ｜ 室內裝修・工程管理</title>
+  <!-- Google Fonts: 襯線字體增添大氣典雅質感 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-gold: #c29d59;
+      --gold-hover: #a8823e;
+      --bg-light: #fcfbfa;
+      --bg-card: #ffffff;
+      --text-main: #242424;
+      --text-sub: #5c5c5c;
+      --border-color: #eae6df;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif {
+      font-family: 'Noto Serif TC', serif;
+      letter-spacing: 0.05em;
+    }
+
+    /* 導覽列 */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(252, 251, 250, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: 0.15em;
+    }
+
+    .brand-sub {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      color: var(--primary-gold);
+      letter-spacing: 0.12em;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* 按鈕樣式統整 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-gold {
+      background: var(--primary-gold);
+      color: #fff;
+      border: 1px solid var(--primary-gold);
+    }
+    .btn-gold:hover {
+      background: var(--gold-hover);
+      box-shadow: 0 4px 15px rgba(194, 157, 89, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid #c7c1b7;
+    }
+    .btn-outline:hover {
+      border-color: var(--primary-gold);
+      color: var(--primary-gold);
+      background: rgba(194, 157, 89, 0.05);
+    }
+
+    .btn-chat {
+      background: #333333;
+      color: #ffffff;
+      border: 1px solid #333333;
+    }
+    .btn-chat:hover {
+      background: #111111;
+    }
+
+    /* 首頁 Hero 區塊 */
+    .hero {
+      position: relative;
+      padding: 100px 5% 90px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 30%, #fffbf2 0%, var(--bg-light) 70%);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.9rem;
+      color: var(--primary-gold);
+      letter-spacing: 0.25em;
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 1.5rem;
+      color: #1e1e1e;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-sub);
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* 品牌精神 (三大核心：磐、璽、鷹) */
+    .philosophy {
+      max-width: 1160px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .section-title span {
+      font-size: 0.85rem;
+      color: var(--primary-gold);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.2em;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 40px 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      border-color: rgba(194, 157, 89, 0.4);
+    }
+
+    .card-symbol {
+      display: inline-block;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-gold);
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--primary-gold);
+      padding-bottom: 4px;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .card p {
+      font-size: 0.96rem;
+      color: var(--text-sub);
+      text-align: justify;
+    }
+
+    /* 底部諮詢呼籲 */
+    .cta-banner {
+      background: #1e1e1e;
+      color: #ffffff;
+      text-align: center;
+      padding: 70px 20px;
+      margin-top: 60px;
+    }
+
+    .cta-banner h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #f7f5f0;
+    }
+
+    .cta-banner p {
+      color: #aaa;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    /* 頁尾 */
+    footer {
+      background: #141414;
+      color: #777;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+      border-top: 1px solid #282828;
+    }
+
+    footer span {
+      color: var(--primary-gold);
+    }
+
+    /* 響應式調整 */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .nav-actions {
+        display: none; /* 手機版簡化，保留主頁按鈕組 */
+      }
+      .hero-btn-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-btn-group .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部導覽列 -->
+  <header>
+    <div class="brand">
+      <div class="brand-title serif">磐 璽 設 計</div>
+      <div class="brand-sub">Stable Trust Construction co. ltd</div>
+    </div>
+    <div class="nav-actions">
+      <!-- 導覽列輔助按鈕 -->
+      <a href="index2.html" class="btn btn-outline">作品集</a>
+      <a href="index3.html" class="btn btn-gold">預約免費諮詢</a>
+    </div>
+  </header>
+
+  <!-- 主視覺 Hero 區 -->
+  <section class="hero">
+    <div class="hero-tag">Interior Design & Project Management</div>
+    <h1 class="serif">立基如磐，一諾成璽</h1>
+    <p>
+      以最扎實嚴謹的工程打下長遠生活的底氣，用玉璽立約的誠信態度築起安心的家。在穩固的根基之上，為您開拓兼具美感與深度的空間藍圖。
+    </p>
+
+    <!-- 指定的 3 個主要按鈕區塊 -->
+    <div class="hero-btn-group">
+      <!-- 按鈕 1：預約免費諮詢 -->
+      <a href="index3.html" class="btn btn-gold">
+        ✦ 預約免費諮詢
+      </a>
+      <!--#consult-->
+      
+      <!-- 按鈕 2：作品集 -->
+      <a href="index2.html" class="btn btn-outline">
+        探索精選作品集
+      </a>
+
+      <!-- 按鈕 3：客服小編 (可換成 LINE 或 FB Messenger 連結) -->
+      <a href="index3.html" target="_blank" rel="noopener" class="btn btn-chat">
+        聯繫客服小編
+        <!--https://line.me/R/ti/p/-->
+      </a>
+    </div>
+  </section>
+
+  <!-- 品牌精神卡片區 -->
+  <section class="philosophy">
+    <div class="section-title">
+      <span class="serif">CORE PHILOSOPHY</span>
+      <h2 class="serif">品牌精神與承諾</h2>
+    </div>
+
+    <div class="grid-cards">
+      <!-- 磐 -->
+      <div class="card">
+        <div class="card-symbol serif">磐</div>
+        <h3>穩健基石・嚴謹工序</h3>
+        <p>
+          「磐」為扎實地基，是我們對基礎工程與現場監造的絕對堅持。室內裝修看不見的水電、泥作與結構，我們以最高工藝標準把關，鋪就長久居住的安穩底氣。
+        </p>
+      </div>
+
+      <!-- 璽 -->
+      <div class="card">
+        <div class="card-symbol serif">璽</div>
+        <h3>誠信一諾・透明契約</h3>
+        <p>
+          「璽」為古代立約之玉印，象徵商業承諾與誠信團隊。落實透明報價、清楚期程與標準化管理，言出必行，不辜負每位屋主交付的沉甸信賴。
+        </p>
+      </div>
+
+      <!-- 鷹 -->
+      <div class="card">
+        <div class="card-symbol serif">鷹</div>
+        <h3>立基遠瞻・全局視野</h3>
+        <p>
+          基石之上的雄鷹，代表團隊敏銳的空間洞察與全局視野。我們深耕於地面的工法細節，同時以老鷹般的高瞻遠矚，為您的生活機能開展長遠格局。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 CTA 區塊 -->
+  <section class="cta-banner" id="consult">
+    <h2 class="serif">開始規劃您的理想空間</h2>
+    <p>無論是新成屋規劃、中古屋翻新或工程管理諮詢，磐璽團隊隨時為您服務。</p>
+    <div class="hero-btn-group">
+      <a href="#consult" class="btn btn-gold">填寫諮詢表單</a>
+      <a href="https://line.me/R/ti/p/" target="_blank" rel="noopener" class="btn btn-outline" style="color:#fff; border-color:#666;">
+        LINE 聯繫小編
+      </a>
+    </div>
+  </section>
+
+  <!-- 作品集錨點示範區塊 -->
+  <div id="portfolio" style="padding: 20px 0;"></div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>立基如磐，一諾成璽 ｜ <span>磐璽設計</span> Stable Trust Construction co. ltd</p>
+    <p style="margin-top: 8px; font-size: 0.78rem;">© 2026 磐璽室內裝修工程. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
