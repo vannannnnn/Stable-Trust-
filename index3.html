@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PLFM4229');</script>
+  <!-- End Google Tag Manager -->
   <title>客戶諮詢預約 ｜ 磐璽設計 Stable Trust</title>
-  
+
   <!-- 字型導入 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
@@ -95,6 +108,7 @@
       color: var(--text-main);
       background: transparent;
     }
+
     .btn-outline:hover {
       border-color: var(--primary-gold);
       color: var(--primary-gold);
@@ -144,7 +158,7 @@
       border: 1px solid var(--border-color);
       border-radius: 8px;
       padding: 40px 36px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     }
 
     .panel-heading {
@@ -181,7 +195,9 @@
       margin-left: 2px;
     }
 
-    input, select, textarea {
+    input,
+    select,
+    textarea {
       width: 100%;
       padding: 12px 14px;
       font-size: 0.95rem;
@@ -193,7 +209,9 @@
       transition: all 0.25s ease;
     }
 
-    input:focus, select:focus, textarea:focus {
+    input:focus,
+    select:focus,
+    textarea:focus {
       outline: none;
       border-color: var(--primary-gold);
       background-color: #ffffff;
@@ -342,17 +360,42 @@
     }
 
     @media (max-width: 860px) {
+
+      /* 讓 index3.html 頂部按鈕在手機上縮小、排版整齊 */
+      .brand-title {
+        font-size: 1.05rem;
+      }
+
+      .brand-sub {
+        font-size: 0.58rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 5px;
+      }
+
+      .nav-links .btn {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+      }
+
       .contact-container {
         grid-template-columns: 1fr;
       }
+
       .form-row {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
-<body>
 
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLFM4229" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <!-- 頂部導覽列 -->
   <header>
     <div class="brand">
@@ -371,18 +414,18 @@
   <section class="page-header">
     <div class="page-tag">CONSULTATION & INQUIRY</div>
     <h1 class="serif">空間需求諮詢登記</h1>
-    <p>立基如磐，一諾成璽。請留下您的基本空間資訊，專案顧問將於 24 小時內與您聯繫。</p>
+    <p>立基如磐，一諾成璽。請填寫需求資料表，專案經理將盡速與您聯繫。</p>
   </section>
 
   <!-- 主聯絡區域 -->
   <main class="contact-container">
-    
+
     <!-- 左側：Google 表單直連窗口 -->
     <section class="form-panel">
       <div class="panel-heading">
-        <h2 class="serif">填寫客戶需求資料</h2>
+        <h2 class="serif">客戶需求資料表</h2>
         <p style="font-size:0.86rem; color:var(--text-sub); margin-top:4px;">
-          所有諮詢紀錄將自動彙整至磐璽工程客戶系統，我們將為您安排專屬顧問。
+          所有諮詢紀錄將自動彙整至磐璽工程客戶系統，完成申請，將會安排專人與您聯繫。
         </p>
       </div>
 
@@ -398,28 +441,25 @@
         2. 各欄位的 name 改為 Google 表單對應的 entry.xxxxxxxx
         3. target="hidden_iframe" 能讓送出後留在原頁面，維持官網高質感體驗
       -->
-      <form id="googleInquiryForm" 
-            action="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID_HERE/formResponse" 
-            method="POST" 
-            target="hidden_iframe" 
-            onsubmit="handleGoogleSubmit()">
-        
+      <form id="googleInquiryForm" action="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID_HERE/formResponse"
+        method="POST" target="hidden_iframe" onsubmit="handleGoogleSubmit()">
+
         <div class="form-row">
           <div class="form-group">
-            <label for="userName">您的稱呼 <span class="required">*</span></label>
+            <label for="userName">您的姓名 <span class="required">*</span></label>
             <!-- 替換 name="entry.xxxxxx" 為 Google 表單「稱呼」的 entry ID -->
             <input type="text" id="userName" name="entry.1000001" required placeholder="例：陳先生 / 林小姐">
           </div>
           <div class="form-group">
             <label for="userPhone">聯絡電話 <span class="required">*</span></label>
             <!-- 替換 name="entry.xxxxxx" 為 Google 表單「電話」的 entry ID -->
-            <input type="tel" id="userPhone" name="entry.1000002" required placeholder="例：0912-345-678">
+            <input type="tel" id="userPhone" name="entry.1000002" required placeholder="例：0912-345678">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="userLine">LINE ID（方便小編加好友聯繫）</label>
+            <label for="userLine">LINE ID</label>
             <input type="text" id="userLine" name="entry.1000003" placeholder="您的 LINE ID">
           </div>
           <div class="form-group">
@@ -437,6 +477,7 @@
               <option value="預售屋客變">預售屋客變</option>
               <option value="商業空間/辦公室">商業空間 / 辦公室規劃</option>
               <option value="工程監造管理">純工程監造管理</option>
+              <option value="工程監造管理">其他</option>
             </select>
           </div>
           <div class="form-group">
@@ -446,37 +487,38 @@
         </div>
 
         <div class="form-group">
-          <label for="userBudget">預計整體預算範圍</label>
+          <label for="userBudget">需求服務</label>
           <select id="userBudget" name="entry.1000007">
-            <option value="尚未確定，需初步討論評估">尚未確定，需初步討論評估</option>
-            <option value="100萬 - 150萬">100 萬 - 150 萬</option>
-            <option value="150萬 - 250萬">150 萬 - 250 萬</option>
-            <option value="250萬 - 400萬">250 萬 - 400 萬</option>
-            <option value="400萬以上">400 萬以上</option>
+            <option value="尚未確定，免費諮詢服務">尚未確定，免費諮詢服務</option>
+            <option value="簡易平面規劃，一萬元起的方案">簡易平面規劃，一萬元起的方案</option>
+            <option value="室內設計，六萬元起的方案">室內設計，六萬元起的方案</option>
+            <option value="施工工程，一百萬元起的方案">施工工程，一百萬元起的方案</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="userMessage">空間需求與備註留言 <span class="required">*</span></label>
-          <textarea id="userMessage" name="entry.1000008" rows="5" required placeholder="請簡述您的屋況、預計開工或入住時程，或是有任何喜愛的風格理念..."></textarea>
+          <label for="userMessage">空間需求與備註留言 </label>
+          <textarea id="userMessage" name="entry.1000008" rows="5" required
+            placeholder="請簡述您的屋況、預計開工或入住時程，或是有任何喜愛的風格理念..."></textarea>
         </div>
 
-        <button type="submit" class="btn-submit" id="submitBtn">確認送出客戶諮詢表</button>
+        <button type="submit" class="btn-submit" id="submitBtn">確認送出 客戶需求資料表</button>
       </form>
 
       <!-- 隱藏 iframe：接收 Google 表單傳回結果，防止畫面跳出 -->
-      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){ showSuccessResult(); }"></iframe>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+        onload="if(submitted){ showSuccessResult(); }"></iframe>
     </section>
 
     <!-- 右側：官方 LINE 與服務須知 -->
     <aside class="info-panel">
-      
+
       <!-- LINE 官方專區 -->
       <div class="line-card">
         <span class="line-badge">FAST CONNECT</span>
         <h3 class="serif">LINE 官方即時通道</h3>
         <p>如需即時諮詢屋況或預約現場評估，歡迎直接加入磐璽官方 LINE，由客服小編一對一為您安排。</p>
-        
+
         <!-- 替換為真實 LINE 加好友連結 -->
         <a href="https://line.me/R/ti/p/" target="_blank" rel="noopener" class="btn-line">
           💬 加入 LINE 官方諮詢小編
@@ -490,11 +532,11 @@
         <ul class="meta-list">
           <li>
             <span class="meta-label">服務地區</span>
-            <span>台中全區、彰化、南投、苗栗（歡迎預約現場場勘）</span>
+            <span>中部全區、中南部、北部</span>
           </li>
           <li>
             <span class="meta-label">服務時間</span>
-            <span>週一至週六 09:30 - 18:30</span>
+            <span>週一至週五 09:30 - 18:30</span>
           </li>
           <li>
             <span class="meta-label">立基承諾</span>
@@ -541,4 +583,5 @@
   </script>
 
 </body>
+
 </html>
