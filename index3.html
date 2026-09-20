@@ -441,69 +441,85 @@
         2. 各欄位的 name 改為 Google 表單對應的 entry.xxxxxxxx
         3. target="hidden_iframe" 能讓送出後留在原頁面，維持官網高質感體驗
       -->
-      <form id="googleInquiryForm" action="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID_HERE/formResponse"
+      <form id="googleInquiryForm" action="https://docs.google.com/forms/d/e/1FAIpQLScW8J75ZFheDMSg63jvROOXS_r730fq3GBrx_V2JGby7AFYcQ/formResponse"
         method="POST" target="hidden_iframe" onsubmit="handleGoogleSubmit()">
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="userName">您的姓名 <span class="required">*</span></label>
-            <!-- 替換 name="entry.xxxxxx" 為 Google 表單「稱呼」的 entry ID -->
-            <input type="text" id="userName" name="entry.1000001" required placeholder="例：陳先生 / 林小姐">
-          </div>
-          <div class="form-group">
-            <label for="userPhone">聯絡電話 <span class="required">*</span></label>
-            <!-- 替換 name="entry.xxxxxx" 為 Google 表單「電話」的 entry ID -->
-            <input type="tel" id="userPhone" name="entry.1000002" required placeholder="例：0912-345678">
-          </div>
-        </div>
+        <!-- 1. 稱呼與電話 -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="userName">您的姓名 <span class="required">*</span></label>
+      <input type="text" id="userName" name="entry.808589367" required placeholder="例：陳先生 / 林小姐">
+    </div>
+    <div class="form-group">
+      <label for="userPhone">聯絡電話 <span class="required">*</span></label>
+      <input type="tel" id="userPhone" name="entry.1735333733" required placeholder="例：0912-345678">
+    </div>
+  </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="userLine">LINE ID</label>
-            <input type="text" id="userLine" name="entry.1000003" placeholder="您的 LINE ID">
-          </div>
-          <div class="form-group">
-            <label for="userEmail">電子郵件</label>
-            <input type="email" id="userEmail" name="entry.1000004" placeholder="例：service@example.com">
-          </div>
-        </div>
+  <!-- 2. LINE ID 與 Email -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="userLine">LINE ID</label>
+      <input type="text" id="userLine" name="entry.1455671420" placeholder="您的 LINE ID">
+    </div>
+    <div class="form-group">
+      <label for="userEmail">電子郵件</label>
+      <input type="email" id="userEmail" name="entry.1748480057" placeholder="例：service@example.com">
+    </div>
+  </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="caseType">空間規劃類型</label>
-            <select id="caseType" name="entry.1000005">
-              <option value="新成屋設計">新成屋設計規劃</option>
-              <option value="老屋翻新/中古屋">老屋翻新 / 中古屋改建</option>
-              <option value="預售屋客變">預售屋客變</option>
-              <option value="商業空間/辦公室">商業空間 / 辦公室規劃</option>
-              <option value="工程監造管理">純工程監造管理</option>
-              <option value="工程監造管理">其他</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="caseLocation">案件地點與室內坪數</label>
-            <input type="text" id="caseLocation" name="entry.1000006" placeholder="例：台中市西屯區 / 35 坪">
-          </div>
-        </div>
+  <!-- 3. 房屋類型與坪數 -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="houseType">房屋現況類型</label>
+      <select id="houseType" name="entry.1937034087">
+        <option value="預售屋客變">預售屋客變</option>
+        <option value="新成屋（10年以下）">新成屋（10年以下）</option>
+        <option value="中古屋（10~30年）">中古屋（10~30年）</option>
+        <option value="老屋翻新（30年以上）">老屋翻新（30年以上）</option>
+        <option value="商業空間規劃">商業空間規劃</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="houseSize">預估施作坪數 (坪)</label>
+      <input type="number" id="houseSize" name="entry.1059731263" placeholder="例：35">
+    </div>
+  </div>
 
-        <div class="form-group">
-          <label for="userBudget">需求服務</label>
-          <select id="userBudget" name="entry.1000007">
-            <option value="尚未確定，免費諮詢服務">尚未確定，免費諮詢服務</option>
-            <option value="簡易平面規劃，一萬元起的方案">簡易平面規劃，一萬元起的方案</option>
-            <option value="室內設計，六萬元起的方案">室內設計，六萬元起的方案</option>
-            <option value="施工工程，一百萬元起的方案">施工工程，一百萬元起的方案</option>
-          </select>
-        </div>
+  <!-- 4. 需求服務 -->
+  <div class="form-group">
+    <label for="serviceType">需求服務</label>
+    <select id="serviceType" name="entry.1851670143">
+      <option value="尚未確定，免費諮詢服務">尚未確定，免費諮詢服務</option>
+      <option value="全案室內設計規劃">全案室內設計規劃</option>
+      <option value="全案裝潢施工統包">全案裝潢施工統包</option>
+      <option value="預售屋客變諮詢">預售屋客變諮詢</option>
+    </select>
+  </div>
 
-        <div class="form-group">
-          <label for="userMessage">空間需求與備註留言 </label>
-          <textarea id="userMessage" name="entry.1000008" rows="5" required
-            placeholder="請簡述您的屋況、預計開工或入住時程，或是有任何喜愛的風格理念..."></textarea>
-        </div>
+  <!-- 5. 預計開工時程 -->
+  <div class="form-group">
+    <label for="startDate">預計開工 / 交屋日期</label>
+    <input type="date" id="startDate" name="entry.567065064">
+  </div>
 
-        <button type="submit" class="btn-submit" id="submitBtn">確認送出 客戶需求資料表</button>
-      </form>
+  <!-- 6. 空間需求與留言 -->
+  <div class="form-group">
+    <label for="userMessage">空間需求與備註留言</label>
+    <textarea id="userMessage" name="entry.353060119" rows="4" placeholder="請簡述您的格局規劃想法、偏好風格或期望完工時程..."></textarea>
+  </div>
+
+  <!-- 送出按鈕 -->
+  <button type="submit" class="btn btn-gold btn-submit" style="width: 100%; padding: 14px; font-size: 1rem; cursor: pointer;">
+    確認送出 客戶需求資料表
+  </button>
+</form>
+
+<!-- 隱藏 iframe：攔截提交後續，彈出成功通知並重新整理頁面 -->
+<script>var submitted = false;</script>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" 
+        onload="if(submitted) { alert('【磐璽設計】已成功收到您的需求資料！專案經理將盡速與您聯繫。'); window.location.reload(); }">
+</iframe>
 
       <!-- 隱藏 iframe：接收 Google 表單傳回結果，防止畫面跳出 -->
       <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
