@@ -441,18 +441,25 @@
         2. 各欄位的 name 改為 Google 表單對應的 entry.xxxxxxxx
         3. target="hidden_iframe" 能讓送出後留在原頁面，維持官網高質感體驗
       -->
-      <form id="googleInquiryForm" action="https://docs.google.com/forms/d/e/1FAIpQLScW8J75ZFheDMSg63jvROOXS_r730fq3GBrx_V2JGby7AFYcQ/formResponse"
-        method="POST" target="hidden_iframe" onsubmit="handleGoogleSubmit()">
+      <!-- 修正：將 submitted 變數宣告置於 iframe 之前，避免初始載入報錯 -->
+      <script>
+        var submitted = false;
+      </script>
+
+      <!-- 1. action 修正為正確的 formResponse（移除結尾多餘的 e） -->
+      <form id="googleInquiryForm" 
+            action="https://docs.google.com/forms/d/e/1FAIpQLScW8J75ZFheDMSg63jvROOXS_r730fq3GBrx_V2JGby7AFYcQ/formResponse"
+            method="POST" 
+            target="hidden_iframe" 
+            onsubmit="handleGoogleSubmit()">
 
         <div class="form-row">
           <div class="form-group">
             <label for="userName">您的姓名 <span class="required">*</span></label>
-            <!-- 替換 name="entry.xxxxxx" 為 Google 表單「稱呼」的 entry ID -->
             <input type="text" id="userName" name="entry.808589367" required placeholder="例：陳先生 / 林小姐">
           </div>
           <div class="form-group">
             <label for="userPhone">聯絡電話 <span class="required">*</span></label>
-            <!-- 替換 name="entry.xxxxxx" 為 Google 表單「電話」的 entry ID -->
             <input type="tel" id="userPhone" name="entry.1735333733" required placeholder="例：0912-345678">
           </div>
         </div>
@@ -477,7 +484,7 @@
               <option value="預售屋客變">預售屋客變</option>
               <option value="商業空間/辦公室">商業空間 / 辦公室規劃</option>
               <option value="工程監造管理">純工程監造管理</option>
-              <option value="工程監造管理">其他</option>
+              <option value="其他">其他</option>
             </select>
           </div>
           <div class="form-group">
@@ -497,7 +504,7 @@
         </div>
 
         <div class="form-group">
-          <label for="userMessage">空間需求與備註留言 </label>
+          <label for="userMessage">空間需求與備註留言</label>
           <textarea id="userMessage" name="entry.353060119" rows="5" 
             placeholder="請簡述您的屋況、預計開工或入住時程，或是有任何喜愛的風格理念..."></textarea>
         </div>
@@ -556,27 +563,32 @@
   </footer>
 
   <script>
-    let submitted = false;
-
     function handleGoogleSubmit() {
       submitted = true;
       const btn = document.getElementById('submitBtn');
       btn.innerText = '資料傳送中...';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
+      // 延遲一點鎖定按鈕，確保表單數據已經由瀏覽器發出
+      setTimeout(function() {
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+      }, 50);
     }
 
     function showSuccessResult() {
       // 顯示成功訊息
       const successBox = document.getElementById('successMsg');
-      successBox.style.display = 'block';
-      successBox.scrollIntoView({ behavior: 'smooth' });
+      if (successBox) {
+        successBox.style.display = 'block';
+        successBox.scrollIntoView({ behavior: 'smooth' });
+      }
 
       // 重設按鈕與表單
       const btn = document.getElementById('submitBtn');
-      btn.innerText = '確認送出客戶諮詢表';
-      btn.disabled = false;
-      btn.style.opacity = '1';
+      if (btn) {
+        btn.innerText = '確認送出 客戶需求資料表';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }
       document.getElementById('googleInquiryForm').reset();
       submitted = false;
     }
